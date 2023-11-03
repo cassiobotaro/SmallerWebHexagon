@@ -39,7 +39,7 @@ func (adp HTTPAdapter) Serve() {
 	}
 }
 
-func NewHttpAdapter(app *SmallerWebHexagon, viewsFolder string) *HTTPAdapter {
+func NewHTTPAdapter(app *SmallerWebHexagon, viewsFolder string) *HTTPAdapter {
 	return &HTTPAdapter{app, viewsFolder}
 }
 

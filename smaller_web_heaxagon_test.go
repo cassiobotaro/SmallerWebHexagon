@@ -13,7 +13,7 @@ func valueShouldProduceRate(t *testing.T, app *SmallerWebHexagon, value float64,
 	if rate != expRate {
 		t.Errorf("value %f got rate %f, want %f", value, rate, expRate)
 	}
-	if result != value * expRate {
+	if result != value*expRate {
 		t.Errorf("value %f got result %f, want %f", value, rate, expRate)
 	}
 }
@@ -33,7 +33,7 @@ func TestItWorksWithFileRater(t *testing.T) {
 func TestRunsViaHttpAdapter(t *testing.T) {
 	hex := NewSmallerWebHexagon(NewInCoderRater())
 	viewsFolder := "views/"
-	app := NewHttpAdapter(hex, viewsFolder)
+	app := NewHTTPAdapter(hex, viewsFolder)
 	req := httptest.NewRequest(http.MethodGet, "/100", strings.NewReader(""))
 	res := httptest.NewRecorder()
 	app.ServeHTTP(res, req)
@@ -45,7 +45,7 @@ func TestRunsViaHttpAdapter(t *testing.T) {
 	}
 	expBody := string(HTMLFromTemplateFile("views/result.tmpl", out))
 	got := res.Body.String()
-	if got != expBody{
+	if got != expBody {
 		t.Errorf("expect %q, want %q", got, expBody)
 	}
 }
