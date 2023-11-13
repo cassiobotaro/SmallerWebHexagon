@@ -12,9 +12,8 @@ const (
 	addr = ":9292"
 )
 
-
 type HTTPAdapter struct {
-	app *SmallerWebHexagon
+	app         Rateable
 	viewsFolder string
 }
 
@@ -28,7 +27,7 @@ func (adp HTTPAdapter) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 		"rate":   rate,
 		"result": result,
 	}
-	const resultTmpl =  "result.tmpl"
+	const resultTmpl = "result.tmpl"
 	page := HTMLFromTemplateFile(filepath.Join(adp.viewsFolder, resultTmpl), out)
 	res.Write(page)
 }
@@ -39,7 +38,7 @@ func (adp HTTPAdapter) Serve() {
 	}
 }
 
-func NewHTTPAdapter(app *SmallerWebHexagon, viewsFolder string) *HTTPAdapter {
+func NewHTTPAdapter(app Rateable, viewsFolder string) *HTTPAdapter {
 	return &HTTPAdapter{app, viewsFolder}
 }
 

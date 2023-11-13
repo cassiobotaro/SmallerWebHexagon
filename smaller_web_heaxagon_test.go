@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func valueShouldProduceRate(t *testing.T, app *SmallerWebHexagon, value float64, expRate float64) {
+func valueShouldProduceRate(t *testing.T, app Rateable, value float64, expRate float64) {
 	t.Helper()
 	rate, result := app.RateAndResult(value)
 	if rate != expRate {

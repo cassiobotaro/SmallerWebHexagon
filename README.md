@@ -25,3 +25,22 @@ Run `go run .` to get the web UI on port 9292
 ## Running Tests
 
 Run `go test` to run tests.
+
+
+Notes:
+
+* HttpAdapter and test cases are "primary actors". A "primary actor" is an actor that drives the application (takes it out of quiescent state to perform one of its advertised functions).
+* FileRater and InCoderRater are "secondary actors". A "secondary actor" is one that the application drives, either to get answers from or to merely notify.
+* Rater and Rateable are ports.
+* File `smaller_web_heaxagon.go` contains the hegaxonal core.
+
+```mermaid
+sequenceDiagram
+Http Client->> HTTPAdapter: send request to
+HTTPAdapter->>SmallerWebHexagon: adapt request and calls RateAndResult
+SmallerWebHexagon->>Rater: calls rate method
+Note right of Rater: Could be InCode, File or Others
+Rater->>SmallerWebHexagon: produces a multiplier (rate)
+SmallerWebHexagon->>HTTPAdapter: return result that should be value * rate
+HTTPAdapter->> Http Client :adapt response to http
+```

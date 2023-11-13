@@ -13,6 +13,10 @@ type Rater interface {
 	Rate(value float64) float64
 }
 
+type Rateable interface {
+	RateAndResult(value float64) (float64, float64)
+}
+
 type SmallerWebHexagon struct {
 	rater Rater
 }
