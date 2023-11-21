@@ -13,14 +13,14 @@ const (
 )
 
 type HTTPAdapter struct {
-	app         Rateable
+	app         ForCalculatingTaxes
 	viewsFolder string
 }
 
 func (adp HTTPAdapter) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	value := pathAsNumber(req)
 
-	rate, result := adp.app.RateAndResult(value)
+	rate, result := adp.app.TaxOn(value)
 
 	out := map[string]float64{
 		"value":  value,
@@ -38,7 +38,7 @@ func (adp HTTPAdapter) Serve() {
 	}
 }
 
-func NewHTTPAdapter(app Rateable, viewsFolder string) *HTTPAdapter {
+func NewHTTPAdapter(app ForCalculatingTaxes, viewsFolder string) *HTTPAdapter {
 	return &HTTPAdapter{app, viewsFolder}
 }
 

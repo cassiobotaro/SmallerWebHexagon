@@ -44,3 +44,10 @@ Rater->>SmallerWebHexagon: produces a multiplier (rate)
 SmallerWebHexagon->>HTTPAdapter: return result that should be value * rate
 HTTPAdapter->> Http Client :adapt response to http
 ```
+
+Images:
+
+![diagram](./imgs/diagram.jpeg)
+![code](./imgs/code.jpeg)
+
+Source: https://twitter.com/TotherAlistair/status/1726696933539070303

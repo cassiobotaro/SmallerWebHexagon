@@ -16,8 +16,8 @@ import (
 
 type InCoderRater struct{}
 
-func (in InCoderRater) Rate(value float64) float64 {
-	if value <= 100 {
+func (in InCoderRater) TaxRate(amount float64) float64 {
+	if amount <= 100 {
 		return 1.01
 	}
 	return 1.5
@@ -31,8 +31,8 @@ type FileRater struct {
 	rates [][]float64
 }
 
-func (fr FileRater) Rate(value float64) float64 {
-	if value >= fr.rates[0][0] && value < fr.rates[1][0] {
+func (fr FileRater) TaxRate(amount float64) float64 {
+	if amount >= fr.rates[0][0] && amount < fr.rates[1][0] {
 		return fr.rates[0][1]
 	}
 	return fr.rates[1][1]

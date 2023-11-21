@@ -7,9 +7,9 @@ import (
 	"testing"
 )
 
-func valueShouldProduceRate(t *testing.T, app Rateable, value float64, expRate float64) {
+func valueShouldProduceRate(t *testing.T, app ForCalculatingTaxes, value float64, expRate float64) {
 	t.Helper()
-	rate, result := app.RateAndResult(value)
+	rate, result := app.TaxOn(value)
 	if rate != expRate {
 		t.Errorf("value %f got rate %f, want %f", value, rate, expRate)
 	}

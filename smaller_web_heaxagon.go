@@ -9,24 +9,24 @@ the app itself just returns value * rate(as a function of value)
 */
 package main
 
-type Rater interface {
-	Rate(value float64) float64
+type ForGettingTaxRates interface {
+	TaxRate(amount float64) float64
 }
 
-type Rateable interface {
-	RateAndResult(value float64) (float64, float64)
+type ForCalculatingTaxes interface {
+	TaxOn(amount float64) (float64, float64)
 }
 
 type SmallerWebHexagon struct {
-	rater Rater
+	taxRateRepository ForGettingTaxRates
 }
 
-func (app SmallerWebHexagon) RateAndResult(value float64) (float64, float64) {
-	rate := app.rater.Rate(value)
-	result := value * rate
+func (app SmallerWebHexagon) TaxOn(amount float64) (float64, float64) {
+	rate := app.taxRateRepository.TaxRate(amount)
+	result := amount * rate
 	return rate, result
 }
 
-func NewSmallerWebHexagon(rater Rater) *SmallerWebHexagon {
-	return &SmallerWebHexagon{rater: rater}
+func NewSmallerWebHexagon(taxRateRepository ForGettingTaxRates) *SmallerWebHexagon {
+	return &SmallerWebHexagon{taxRateRepository: taxRateRepository}
 }
